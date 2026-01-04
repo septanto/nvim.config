@@ -6,7 +6,15 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "github_light",
+      colorscheme = function()
+        vim.schedule(function()
+          if vim.o.background == "light" then
+            vim.cmd("colorscheme github_light")
+          else
+            vim.cmd("colorscheme tokyonight")
+          end
+        end)
+      end,
     },
   },
 }
